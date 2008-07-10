@@ -1,0 +1,3 @@
+class Newsletter < Container
+	
+end
