@@ -1,0 +1,13 @@
+C2Newsletter
+======
+
+Newsletter plugin for the Calcium2.
+
+
+Example
+=======
+
+script/generate c2_newsletter
+
+
+Copyright (c) 2008 [Ferenc Fekete], http://xpnindustries.com released under the MIT license
