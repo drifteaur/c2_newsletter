@@ -1,0 +1,3 @@
+page.replace "owner_browsertabs", :partial => "elements"
+# Tabs must be re-initialize after render
+page.call "init_tabs", "owner_browsertabs"

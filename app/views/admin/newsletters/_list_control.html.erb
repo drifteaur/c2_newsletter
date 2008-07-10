@@ -1,0 +1,25 @@
+<!-- [partial:newsletters-control] -->
+<% form_tag admin_newsletters_url, :method => :get, :class => "inline" do %>
+<div class="wide-control">
+  <div class="inner">
+    <input type="submit" value="OK" class="submit" />
+    <strong><%= _('Státusz:') %></strong>&nbsp;&nbsp;
+    <%= grouped_select_tag  "state", 
+                            { :separator => "" }, {}, {}, 
+                            @filters[:state], 
+                            [_('Összes') => "all"],
+                            C_POST_STATES %>
+    &nbsp;&nbsp;&nbsp;
+    <strong><%= _('Szerző:') %></strong>&nbsp;&nbsp;
+    <%= grouped_select_tag  "author",
+                            { :separator => "" }, {}, {},
+                            @filters[:author_id],
+                            [ _('Összes') => "all", _("Saját  Oldalak") => current_user.id.to_s ], 
+                            [ :label => "Szerzők", :content => @authors ] %>
+    &nbsp;&nbsp;&nbsp;
+    <strong><%= _('Keresés:') %></strong>&nbsp;&nbsp;
+    <input type="text" name="search" />  
+  </div>
+</div>
+<% end %>
+<!-- [eopartial:newsletters-control] -->

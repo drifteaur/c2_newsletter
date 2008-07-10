@@ -1,0 +1,29 @@
+<!-- [partial:newsletter-publication] -->
+<% if CALCIUM["content"]["publish_date"] %>
+	<div class="box">
+	  <h3><%= _('Megjelenítés') %></h3>
+	  <div class="content">
+	    <fieldset class="has-subfield">
+				<span class="help" title="<%= _('A hírlevél publikálásána dátuma.') %>">[?]</span>
+	      <%= check_box_tag 'have_publish_time', nil, @newsletter.publication_date? %>&nbsp;&nbsp;<label for="have_publish_time" class="inline"><%= _('Kezdő időpont?') %></label>
+	      <div id="control-published-at" class="sub-field" style="<% if @newsletter.publication_date? %>opacity: 1;<% else %>opacity: 0.2;<% end %>">
+	        <div class="content">
+	          <%= datetime_select 'newsletter', 'published_at' %>
+	        </div>
+	      </div>
+	      <span class="small gray block"><%= _('A hírlevél megjelenítésének kezdő időpontja.') %></span>
+	    </fieldset>
+	    <fieldset class="has-subfield">
+				<span class="help" title="<%= _('A hírlevél ebben az időpontban fog lekerülni a frontendről.') %>">[?]</span>
+	      <%= check_box 'newsletter', 'can_expire', { :checked => @newsletter.expiry_date? } %>&nbsp;&nbsp;<label for="newsletter_can_expire" class="inline"><%= _('Végső időpont?') %></label>
+	      <div id="control-expires-at" class="sub-field" style="<% if @newsletter.expiry_date? %>opacity: 1;<% else %>opacity: 0.2;<% end %>">
+	        <div class="content">
+	          <%= datetime_select 'newsletter', 'expires_at' %>
+	        </div>
+	      </div>
+	      <span class="small gray block"><%= _('A hírlevél megjelenítésének utolsó időpontja.') %></span>
+	    </fieldset>
+	  </div>
+	</div>
+<% end %>
+<!-- [eopartial:newsletter-publication] -->

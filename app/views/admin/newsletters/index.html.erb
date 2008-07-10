@@ -1,0 +1,40 @@
+<!-- section navigation -->
+<%= render :partial => "admin/shared/nav_content" %>
+
+<!-- [module:newsletters]-->
+<div id="yield-wrapper">
+
+  <!-- header -->
+  <%= render :partial => "index_header" %>
+
+  <!-- newsletters content -->
+  <div id="module-wrapper">
+    <div class="column-wrapper">
+
+      <!-- search, filters, etc -->
+      <%= render :partial => "list_control" %>
+    
+      <!-- content goes here -->
+      <table border="0" cellspacing="0" cellpadding="0" class="sortable">
+        <tr>
+          <th class="title sortcol"><%= _('Cím') %></th>
+          <th class="sortcol"><%= _('Kiküldve (db)') %></th>
+          <th class="sortcol"><%= _('Szerző') %></th>
+          <th class="sortcol"><%= _('Utoljára módosítva') %></th>
+          <th class="tr"><%= _('Akciók') %></th>
+        </tr>
+      
+        <!-- render newsletter collection -->
+        <%= render :partial => "newsletter_item", :collection => @newsletters %>
+      
+      </table>
+
+      <div class="pagination-wrapper">
+        <%= will_paginate @newsletters %>
+      </div>
+    
+    </div>
+    <div class="clear" />
+  </div>
+</div>
+<!-- [eomodule:newsletters]-->

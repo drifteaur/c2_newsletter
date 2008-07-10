@@ -14,7 +14,7 @@ class AddC2Newsletter < ActiveRecord::Migration
       t.timestamp :created_at, :updated_at, :published_at, :expires_at
       
       # State
-      t.string :state, :null => false, :default => "draft"
+      t.string :aasm_state, :null => false, :default => "draft"
 
       # Counters & Options
       t.integer :can_expire, :emails_sent, :default => 0

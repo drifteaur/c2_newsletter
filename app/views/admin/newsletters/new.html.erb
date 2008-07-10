@@ -1,0 +1,37 @@
+<!-- section navigation -->
+<%= render :partial => "admin/shared/nav_content" %>
+
+<!-- [module:newsletters]-->
+<div id="yield-wrapper">
+
+  <!-- header -->
+  <%= render :partial => "edit_header" %>
+
+  <!-- newsletters content -->
+  <div id="module-wrapper">
+    <div class="column-wrapper">
+    
+      <!-- content options -->
+      <%= render :partial => "content_control" %>
+    
+      <!-- alerts -->
+      <%= render :partial => "admin/shared/alert_green" if flash[:notice] %>
+
+			<%= errors_for 'newsletter' %>
+    
+      <!-- left pane -->
+      <% form_tag admin_newsletters_url do |newsletter| %>
+        <%= render :partial => "form" %>
+      
+        <div class="wide-control">
+          <div class="inner">
+            <input type="submit" value="<%= _('Mentés') %>" class="submit" />
+          </div>
+        </div>
+      
+      <% end %>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!-- [eomodule:newsletters]-->

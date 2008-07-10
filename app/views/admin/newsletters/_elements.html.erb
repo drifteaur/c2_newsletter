@@ -1,0 +1,97 @@
+<div id="owner_browsertabs" class="tab-relative content">
+	<ul>
+		<li><a href="#tab_owner_posts">Cikkek</a></li>
+		<li><a href="#tab_owner_polls">Szavazások</a></li>
+		<li><a href="#tab_owner_galleries">Galériák</a></li>
+		<li class="last"><a href="#tab_owner_images">Képek</a></li>
+	</ul>
+	
+	<div id="tab_owner_posts">
+  	<table class="lister">
+      <% @newsletter.posts.each do |post| %>            
+        <tr class="<%= "last" if last?(post, @newsletter.posts) %>">
+        	<td class="bullet"> </td>
+        	<td class="browser_title">
+        		<strong><a href="/admin/posts/<%= post.id %>/edit"><%= post.title %></a></strong><br/>
+						<span><%= post.short_title %></span>
+					</td>
+        	<td>
+          	<% form_remote_tag :url => remove_admin_newsletter_url(@newsletter), :method => :post do %>
+				    	<%= hidden_field "element", "id", :value => post.id %>
+				    	<%= hidden_field "element", "type", :value => post.class %>
+				    	<input type="submit" name="commit" class="icon_kiveszem "value=" " />
+          	<% end %>
+          	<span>KIVESZEM</span>
+        	</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  
+  
+	<div id="tab_owner_galleries" style="display: none;">
+  	<table class="lister">
+      <% @newsletter.galleries.each do |gallery| %>      
+        <tr class="<%= "last" if last?(gallery, @newsletter.galleries) %>">
+        	<td class="bullet"> </td>
+        	<td class="browser_title">
+        		<strong><a href="/admin/galleries/<%= gallery.id %>/edit"><%= gallery.title %></a></strong><br/>
+						<span><%= gallery.short_title %></span>
+					</td>
+        	<td>
+          	<% form_remote_tag :url => remove_admin_newsletter_url(@newsletter), :method => :post do %>
+				    	<%= hidden_field "element", "id", :value => gallery.id %>
+				    	<%= hidden_field "element", "type", :value => gallery.class %>
+				    	<input type="submit" name="commit" class="icon_kiveszem "value=" " />
+          	<% end %>
+          	<span>KIVESZEM</span>
+        	</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  
+	<div id="tab_owner_polls" style="display: none;">
+  	<table class="lister">
+      <% @newsletter.polls.each do |poll| %>      
+        <tr class="<%= "last" if last?(poll, @newsletter.polls) %>">
+        	<td class="bullet"> </td>
+        	<td class="browser_title">
+        		<strong><a href="/admin/polls/<%= poll.id %>/edit"><%= poll.title %></a></strong><br/>
+						<span><%= poll.short_title %></span>
+					</td>
+        	<td>
+          	<% form_remote_tag :url => remove_admin_newsletter_url(@newsletter), :method => :post do %>
+				    	<%= hidden_field "element", "id", :value => poll.id %>
+				    	<%= hidden_field "element", "type", :value => poll.class %>
+				    	<input type="submit" name="commit" class="icon_kiveszem "value=" " />
+          	<% end %>
+          	<span>KIVESZEM</span>
+        	</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+	<div id="tab_owner_images" style="display: none;">
+  	<table class="lister">
+      <% @newsletter.images.each do |image| %>      
+        <tr class="<%= "last" if last?(image, @newsletter.images) %>">
+        	<td class="bullet"> </td>
+        	<td class="browser_title">
+        		<strong><%= image.title %></strong>
+					</td>
+        	<td>
+          	<% form_remote_tag :url => remove_admin_newsletter_url(@newsletter), :method => :post do %>
+				    	<%= hidden_field "element", "id", :value => image.id %>
+				    	<%= hidden_field "element", "type", :value => image.class %>
+				    	<input type="submit" name="commit" class="icon_kiveszem "value=" " />
+          	<% end %>
+          	<span>KIVESZEM</span>
+        	</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+    
+</div>

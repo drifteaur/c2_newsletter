@@ -1,0 +1,5 @@
+<!-- [partial:newsletter-authors] -->
+<div class="box">
+  <div class="head-menu"><strong><% if @newsletter.new_record? %><%= _('A hírlevél szerzője te vagy') %><% else %><%= _('Szerző:') %>&nbsp;<%= link_to @newsletter.author.realname, "mailto:#{@newsletter.author.email}" %><% end %></strong></div>
+</div>
+<!-- [eopartial:newsletter-authors] -->

@@ -1,0 +1,41 @@
+<!-- section navigation -->
+<%= render :partial => "admin/shared/nav_content" %>
+
+<!-- [module:pages]-->
+<div id="yield-wrapper">
+
+  <!-- header -->
+  <%= render :partial => "edit_header" %>
+
+  <!-- pages content -->
+  <div id="module-wrapper">
+    <div class="column-wrapper">
+
+      <!-- alerts -->
+      <%= render :partial => "admin/shared/alert_green" if flash[:notice] %>
+
+      <%= render :partial => "admin/shared/alert_red" if flash[:error] %>
+
+			<%= errors_for 'poll' %>
+    
+      <!-- content options -->
+      <%= render :partial => "content_control" %>
+
+      <!-- left pane -->
+      <% form_tag admin_poll_url(@poll), :method => :put do %>
+      	<input type="hidden" name="render_action" id="render_action" value="edit" />
+        <%= render :partial => "form" %>
+      
+        <div class="wide-control">
+          <div class="inner">
+            <input type="submit" value="<%= _('Mentés') %>" class="submit" />
+          </div>
+        </div>
+      
+      <% end %>
+    
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!-- [eomodule:pages]-->

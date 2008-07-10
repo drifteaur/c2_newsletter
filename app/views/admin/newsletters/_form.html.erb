@@ -1,0 +1,36 @@
+<!-- [form:newsletter] -->
+<div id="left-pane">
+  <div id="left-pane-wrapper">
+    
+    <!-- newsletter title and short title -->
+    <%= render :partial => "form_basic_content" %>
+    
+  </div>
+</div>
+
+<!-- middle pane -->
+<div id="middle-pane">
+  <div id="middle-pane-wrapper">
+    
+    <!-- authors -->
+    <%= render :partial => "form_authors" %>
+    
+    <!-- publication options -->
+    <%= render :partial => "form_publication" unless @newsletter.new_record? %>
+    
+  </div>
+</div>
+
+<!-- right pane -->
+<div id="right-pane">
+  <div id="sidebar-right">
+    
+    <!-- actions -->
+    <%= render :partial => "form_actions" unless @newsletter.new_record? %>
+
+    <!-- preview -->
+    <%= render :partial => "form_preview" unless @newsletter.new_record? %>
+    
+  </div>
+</div>
+<!-- [eoform:newsletter] -->

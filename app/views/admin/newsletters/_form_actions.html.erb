@@ -1,0 +1,31 @@
+<!-- [partial:newsletter-actions] -->
+<div class="box">
+  <h3><%= _('Akciók') %></h3>
+  <div class="content">
+    <ul class="vertical">
+    	<% unless @newsletter.draft? %>
+    		<li class="action-publish"><span title="<%= _("Publikálás visszavonása.") %>"><%= link_to "Visszadobom vázlattá", draft_admin_newsletter_url(@newsletter), :method => :post, :confirm => "Biztosan vázlattá minősíted?" %></span></li>
+    	<% end %>
+    	
+    	<% if @newsletter.pending? %>
+    		<% authorize [2,3] do %>
+	      	<li class="action-publish"><span title="<%= _("Publikálás, csak publikált hírlevél küldhető ki.") %>"><%= link_to "Publikálom a hírlevelet", publish_admin_newsletter_url(@newsletter), :method => :post, :confirm => "Biztosan szeretnéd publikálni ezt a hírlevelet?" %></span></li>
+	      <% end %>
+      <% end %>
+      
+      <% if @newsletter.draft? %>
+      	<li class="action-send"><span title="<%= _("") %>"><%= link_to "Beküldöm jóváhagyásra", review_admin_newsletter_url(@newsletter), :method => :post, :confirm => "Biztosan beküldöd jóváhagyásra ezt a hírlevelet?" %></span></li>
+      	<% authorize [2,3] do %>
+	      	<li class="action-publish"><span title="<%= _("Publikálás, csak publikált hírlevél küldhető ki.") %>"><%= link_to "Publikálom a hírlevelet", publish_admin_newsletter_url(@newsletter), :method => :post, :confirm => "Biztosan szeretnéd publikálni ezt a hírlevelet?" %></span></li>
+	      <% end %>
+      <% end %>
+      
+      <% unless @newsletter.deleted? %>
+      	<% authorize [2,3] do %>
+	      	<li class="last action-delete"><span title="<%= _("A hírlevél Törölt státuszt kap de az adminon továbbra is megőrzésre kerül, lehetőség van a visszaállításra.") %>"><%= link_to "Törlöm a szavazást", admin_newsletter_url(@newsletter), :method => :delete, :confirm => "Biztosan törlöd ezt a hírlevelet?" %></span></li>
+	      <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<!-- [eopartial:newsletter-actions] -->

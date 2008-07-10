@@ -1,0 +1,44 @@
+<tr>
+  <td class="title">
+    <h4><%= link_to newsletter_item.title, edit_admin_newsletter_url(newsletter_item) %></h4>
+    <span>
+      <% if newsletter_item.short_title %>
+        <%= newsletter_item.short_title %>
+      <% else %>
+        <%= _('Ennek a szavazásnak nincs rövid címe.') %>
+      <% end %>
+    </span>
+  </td>
+  <td><%= newsletter_item.votes_count %></td>
+  <td><%= link_to newsletter_item.real_author_name, "mailto:#{newsletter_item.real_author_email}" %></td>
+	<td class="tags">
+		<% newsletter_item.tag_list.split(",").each do |tag| %>      
+    	<span><%= tag %></span>
+		<% end %>
+	</td> 
+  <td><%= newsletter_item.updated_at.strftime("%Y. %b %d. %H:%M") %></td>
+  <td class="end">
+    	<% unless newsletter_item.draft? %>
+    		<span class="icon_clipboard" title="Vázlattá minősítem"><%= link_to "<span></span>", draft_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan vázlattá minősíted?" %></span>
+    	<% end %>
+    	
+    	<% if newsletter_item.pending? %>
+    		<% authorize [2,3] do %>
+	    		<span class="icon_check" title="Publikálom"><%= link_to "<span></span>", publish_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan szeretnéd publikálni ezt a szavazást?" %></span>
+	    	<% end %>
+      <% end %>
+      
+      <% if newsletter_item.draft? %>
+      	<span class="icon_clipboard" title="Beküldöm jóváhagyásra"><%= link_to "<span></span>", review_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan beküldöd jóváhagyásra ezt a szavazást?" %></span>
+    		<% authorize [2,3] do %>
+	      	<span class="icon_check" title="Publikálom"><%= link_to "<span></span>", publish_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan szeretnéd publikálni ezt a szavazást?" %></span>
+	     	<% end %>
+      <% end %>
+      
+      <% unless newsletter_item.deleted? %>
+      	<% authorize [2,3] do %>
+	      	<span class="icon_trash" title="Törlöm a szavazást"><%= link_to "<span></span>", admin_newsletter_url(newsletter_item), :method => :delete, :confirm => "Biztosan törlöd ezt a szavazást?" %></span>
+	      <% end %>
+      <% end %>
+  </td>
+</tr>

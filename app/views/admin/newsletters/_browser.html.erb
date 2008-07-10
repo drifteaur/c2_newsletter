@@ -1,0 +1,68 @@
+<!-- start browsertabs -->
+<div id="browsertabs" class="tab-relative content">
+	<ul>
+		<li><a href="#tab_posts">Cikkek</a></li>
+		<li><a href="#tab_polls">Szavazások</a></li>
+		<li><a href="#tab_galleries">Galériák</a></li>
+		<li class="last"><a href="#tab_images">Képek</a></li>
+	</ul>	
+	
+	<div id="tab_posts">
+		<div class="tabsearch">
+			<% form_remote_tag :url => search_admin_newsletter_url( @newsletter ), :method => :post do %>
+				<input type="text" name="phrase" />
+				<input type="hidden" name="type" value="post">
+				<input type="submit" value="Keress!">
+			<% end %>
+		</div>
+		
+		<table class="lister" id="browser_posts">
+			<%= render :partial => "browser_listing", :locals => { :collection => @posts || [] } %>
+		</table>
+    
+  </div>
+  
+	<div id="tab_galleries" style="display: none;">
+		<div class="tabsearch">
+			<% form_remote_tag :url => search_admin_newsletter_url( @newsletter ), :method => :post do %>
+				<input type="text" name="phrase" />
+				<input type="hidden" name="type" value="gallery">
+				<input type="submit" value="Keress!">
+			<% end %>
+		</div>
+		
+  	<table class="lister" id="browser_galleries">
+			<%= render :partial => "browser_listing", :locals => { :collection => @galleries || [] } %>
+    </table>
+  </div>
+  
+	<div id="tab_polls" style="display: none;">
+		<div class="tabsearch">
+			<% form_remote_tag :url => search_admin_newsletter_url( @newsletter ), :method => :post do %>
+				<input type="text" name="phrase" />
+				<input type="hidden" name="type" value="poll">
+				<input type="submit" value="Keress!">
+			<% end %>
+		</div>
+		
+  	<table class="lister" id="browser_polls">
+			<%= render :partial => "browser_listing", :locals => { :collection => @polls || [] } %>
+    </table>
+  </div>
+
+	<div id="tab_images" style="display: none;">
+		<div class="tabsearch">
+			<% form_remote_tag :url => search_admin_newsletter_url( @newsletter ), :method => :post do %>
+				<input type="text" name="phrase" />
+				<input type="hidden" name="type" value="image">
+				<input type="submit" value="Keress!">
+			<% end %>
+		</div>
+		
+  	<table class="lister" id="browser_images">
+			<%= render :partial => "browser_listing", :locals => { :collection => @images || [] } %>
+    </table>
+  </div>
+    
+</div>
+<!-- end browsertabs -->

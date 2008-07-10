@@ -1,0 +1,17 @@
+<% collection.each do |element| %>      
+  <tr class="<%= "last" if last?(element, collection) %>">
+  	<td class="bullet"> </td>
+  	<td class="browser_title">
+  		<strong><a href="#"><%= element.title %></a></strong><br/>
+			<span><%= element.short_title if element.respond_to? :short_title %></span>
+		</td>
+  	<td class="berakom">
+    	<% form_remote_tag :url => add_admin_newsletter_url(@newsletter), :method => :post do %>
+	    	<%= hidden_field "element", "id", :value => element.id %>
+	    	<%= hidden_field "element", "type", :value => element.class %>
+	    	<input type="submit" name="commit" class="icon_berakom" value=" " />
+    	<% end %>
+			<span>BERAKOM</span>
+  	</td>
+  </tr>
+<% end %>

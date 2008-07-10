@@ -1,0 +1,20 @@
+<!-- [partial:form-basic-content] -->
+<div class="box">
+  <h3><%= _('Cím és Bevezető') %></h3>
+  <div class="content">
+
+    <fieldset>
+      <label for="newsletter_title"><span class="help" title="<%= _("A hírlevél címe ami megjelenik a frontenden.") %>">[?]</span><%= _('A hírlevél címe') %>:</label>
+      <%= text_field 'newsletter', 'title', :class => 'wide caption' %>
+    </fieldset>
+    <fieldset>
+      <label for="newsletter_short_title"><span class="help" title="<%= _("A hírlevél rövidített címe olyan helyekre, ahol nem fér el a hosszú (pl. keskenyebb dobozok).") %>">[?]</span><%= _('Rövid cím:') %></label>
+      <%= text_field 'newsletter', 'short_title', :class => 'wide' %>
+    </fieldset>
+    <fieldset>
+      <label for="newsletter_excerpt"><span class="help" title="<%= _("A hírlevélhez tartozó bevezető, különválasztva jelenik meg a tartalomtól.") %>">[?]</span><%= _('Bevezető:') %></label>
+      <%= text_area 'newsletter', 'excerpt', :rows => "10", :class => 'wide' %>
+    </fieldset>
+  </div>
+</div>
+<!-- [eopartial:form-basic-content] -->

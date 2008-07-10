@@ -1,0 +1,40 @@
+<!-- section navigation -->
+<%= render :partial => "admin/shared/nav_layout" %>
+
+<!-- [module:newsletters]-->
+<div id="yield-wrapper">
+
+  <!-- header -->
+  <%= render :partial => "edit_header" %>
+
+
+  <!-- boxes content -->
+  <div id="module-wrapper">
+    <div class="column-wrapper">
+
+      <!-- content options -->
+      <%= render :partial => "content_control" %>
+    
+      <div id="right-pane-2" style="width:100%;">
+        <div class="wrapper-left">
+          <div class="box browser">
+           <h4><strong><%= @newsletter.title %></strong> hírlevél tartalma</h4>
+            <div class="content">
+							<%= render :partial => "elements" %>
+            </div>
+          </div>
+    		</div>
+        <div class="wrapper-right">
+          <div class="box browser">
+						<h4>Elérhető tartalom</h4>
+            <div class="content">
+							<%= render :partial => "browser" %>
+            </div>
+          </div>
+    		</div>
+      </div>
+    
+  </div>
+  <div class="clear">&nbsp;</div>
+</div>
+<!-- [eomodule:boxes]-->

@@ -1,7 +1,6 @@
 # Include hook code here
 require 'document'
-require File.dirname(__FILE__) + '/lib/poll'
-require File.dirname(__FILE__) + '/lib/poll_answer'
+require File.dirname(__FILE__) + '/lib/newsletter'
 
 
 PLUGINS << { :name => "c2_newsletter", 

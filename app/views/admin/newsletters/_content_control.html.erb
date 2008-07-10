@@ -1,0 +1,18 @@
+<!-- [partial:newsletter-content-control] -->
+<div id="content-control">
+	<div class="head-menu">
+		<% if @newsletter.draft? %>
+			<span class="draft"><%= state @newsletter %></span>
+		<% else %>
+			<span class="status-ok"><%= state @newsletter %></span>
+		<% end %>
+	</div>
+  <ul>
+    <li class="title first <%= "selected" if params[:action] == "edit" %>"><%= link_to 'Hírlevél Tulajdonságai', edit_admin_newsletter_url(@newsletter) %></li>
+    <% unless @newsletter.new_record? %>
+	    <li class="<%= "selected" if params[:action] == "associated" %>"><%= link_to "Csatolt Tartalmak", associated_admin_newsletter_url(@newsletter) %></li>
+			<li><%= link_to "Előnézet", preview_admin_newsletter_url(@newsletter), :target => "_blank" %></li>
+	  <% end %>
+  </ul>
+</div>
+<!-- [eopartial:newsletter-content-control] -->

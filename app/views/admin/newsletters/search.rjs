@@ -1,0 +1,1 @@
+page.replace_html @id, :partial => "browser_listing", :locals => { :collection => @collection }
