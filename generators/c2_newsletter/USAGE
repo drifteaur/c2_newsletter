@@ -1,0 +1,9 @@
+Description:
+
+
+Example:
+    ./script/generate c2_newsletter
+
+    This will create the following migration:
+
+      db/migrate/XXX_add_c2_newsletter.rb
