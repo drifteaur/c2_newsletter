@@ -4,6 +4,7 @@ class Admin::NewslettersController < ApplicationController
 
   # Filters
   before_filter :login_required
+  before_filter { |c| c.authorize( 1,2,3 ) }
   before_filter :find_newsletter, :except => [ :index, :new, :create ]
   before_filter :build_search, :only => [ :index ]
   before_filter :find_authors, :only => [ :index ]

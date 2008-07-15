@@ -9,13 +9,7 @@
       <% end %>
     </span>
   </td>
-  <td><%= newsletter_item.votes_count %></td>
-  <td><%= link_to newsletter_item.real_author_name, "mailto:#{newsletter_item.real_author_email}" %></td>
-	<td class="tags">
-		<% newsletter_item.tag_list.split(",").each do |tag| %>      
-    	<span><%= tag %></span>
-		<% end %>
-	</td> 
+	<td><%= newsletter_item.emails_sent %></td>
   <td><%= newsletter_item.updated_at.strftime("%Y. %b %d. %H:%M") %></td>
   <td class="end">
     	<% unless newsletter_item.draft? %>
