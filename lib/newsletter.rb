@@ -50,4 +50,17 @@ class Newsletter < ActiveRecord::Base
     published_at == nil ? false : true
   end
   
+  def last_editor!( user )
+    update_attribute( :last_editor_name, user.realname )
+  end
+  
+  def banner_magnum
+    images.find(:first)
+  end
+  
+  def banner_magnum_url
+    b = banner_magnum
+    b.photo.url if b
+  end
+  
 end

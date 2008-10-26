@@ -22,7 +22,7 @@
       
       <% unless @newsletter.deleted? %>
       	<% authorize [2,3] do %>
-	      	<li class="last action-delete"><span title="<%= _("A hírlevél Törölt státuszt kap de az adminon továbbra is megőrzésre kerül, lehetőség van a visszaállításra.") %>"><%= link_to "Törlöm a szavazást", admin_newsletter_url(@newsletter), :method => :delete, :confirm => "Biztosan törlöd ezt a hírlevelet?" %></span></li>
+	      	<li class="last action-delete"><span title="<%= _("A hírlevél Törölt státuszt kap de az adminon továbbra is megőrzésre kerül, lehetőség van a visszaállításra.") %>"><%= link_to "Törlöm a hírlevelet", admin_newsletter_url(@newsletter), :method => :delete, :confirm => "Biztosan törlöd ezt a hírlevelet?" %></span></li>
 	      <% end %>
       <% end %>
     </ul>

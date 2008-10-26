@@ -12,9 +12,6 @@
 <div id="middle-pane">
   <div id="middle-pane-wrapper">
     
-    <!-- authors -->
-    <%= render :partial => "form_authors" %>
-    
     <!-- publication options -->
     <%= render :partial => "form_publication" unless @newsletter.new_record? %>
     

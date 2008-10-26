@@ -9,7 +9,8 @@ module NewsletterRoutes
                                       :search => :any,
                                       :add => :any,
                                       :remove => :any,
-                                      :preview => :get }
+                                      :preview => :get,
+                                      :send_mail => :any }
       end
   end
 

@@ -11,6 +11,7 @@
   </td>
 	<td><%= newsletter_item.emails_sent %></td>
   <td><%= newsletter_item.updated_at.strftime("%Y. %b %d. %H:%M") %></td>
+	<td><%= newsletter_item.last_editor_name %></td>
   <td class="end">
     	<% unless newsletter_item.draft? %>
     		<span class="icon_clipboard" title="Vázlattá minősítem"><%= link_to "<span></span>", draft_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan vázlattá minősíted?" %></span>
@@ -18,20 +19,20 @@
     	
     	<% if newsletter_item.pending? %>
     		<% authorize [2,3] do %>
-	    		<span class="icon_check" title="Publikálom"><%= link_to "<span></span>", publish_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan szeretnéd publikálni ezt a szavazást?" %></span>
+	    		<span class="icon_check" title="Publikálom"><%= link_to "<span></span>", publish_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan szeretnéd publikálni ezt a hírlevelet?" %></span>
 	    	<% end %>
       <% end %>
       
       <% if newsletter_item.draft? %>
-      	<span class="icon_clipboard" title="Beküldöm jóváhagyásra"><%= link_to "<span></span>", review_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan beküldöd jóváhagyásra ezt a szavazást?" %></span>
+      	<span class="icon_clipboard" title="Beküldöm jóváhagyásra"><%= link_to "<span></span>", review_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan beküldöd jóváhagyásra ezt a hírlevelet?" %></span>
     		<% authorize [2,3] do %>
-	      	<span class="icon_check" title="Publikálom"><%= link_to "<span></span>", publish_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan szeretnéd publikálni ezt a szavazást?" %></span>
+	      	<span class="icon_check" title="Publikálom"><%= link_to "<span></span>", publish_admin_newsletter_url(newsletter_item), :method => :post, :confirm => "Biztosan szeretnéd publikálni ezt a hírlevelet?" %></span>
 	     	<% end %>
       <% end %>
       
       <% unless newsletter_item.deleted? %>
       	<% authorize [2,3] do %>
-	      	<span class="icon_trash" title="Törlöm a szavazást"><%= link_to "<span></span>", admin_newsletter_url(newsletter_item), :method => :delete, :confirm => "Biztosan törlöd ezt a szavazást?" %></span>
+	      	<span class="icon_trash" title="Törlöm a hírlevelet"><%= link_to "<span></span>", admin_newsletter_url(newsletter_item), :method => :delete, :confirm => "Biztosan törlöd ezt a hírlevelet?" %></span>
 	      <% end %>
       <% end %>
   </td>

@@ -22,13 +22,22 @@
       <%= render :partial => "content_control" %>
 
       <!-- left pane -->
-      <% form_tag admin_newsletter_url(@newsletter), :method => :put do %>
-      	<input type="hidden" name="render_action" id="render_action" value="edit" />
-        <%= render :partial => "form" %>
-      
+      <% form_tag send_mail_admin_newsletter_url(@newsletter) do %>
+				
+				<div class="box">
+				  <h3><%= _('Cím és Bevezető') %></h3>
+				  <div class="content">
+
+				    <fieldset>
+				      <label for="newsletter_title">Címzettek ,szóközzel elválasztva:</label>
+							<input type="text" name="recipients" class="wide caption" />
+				    </fieldset>
+				  </div>
+				</div>
+				
         <div class="wide-control">
           <div class="inner">
-            <input type="submit" value="<%= _('Mentés') %>" class="submit" />
+            <input type="submit" value="<%= _('Elküldöm a tesztet') %>" class="submit" />
           </div>
         </div>
       

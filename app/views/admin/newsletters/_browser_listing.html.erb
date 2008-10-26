@@ -3,7 +3,8 @@
   	<td class="bullet"> </td>
   	<td class="browser_title">
   		<strong><a href="#"><%= element.title %></a></strong><br/>
-			<span><%= element.short_title if element.respond_to? :short_title %></span>
+			<span><%= element.short_title if element.respond_to? :short_title %>
+				<%= "#{element.width} x #{element.width} px" if  element.class == Image %></span>
 		</td>
   	<td class="berakom">
     	<% form_remote_tag :url => add_admin_newsletter_url(@newsletter), :method => :post do %>

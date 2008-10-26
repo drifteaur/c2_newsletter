@@ -12,6 +12,7 @@
     <% unless @newsletter.new_record? %>
 	    <li class="<%= "selected" if params[:action] == "associated" %>"><%= link_to "Csatolt Tartalmak", associated_admin_newsletter_url(@newsletter) %></li>
 			<li><%= link_to "Előnézet", preview_admin_newsletter_url(@newsletter), :target => "_blank" %></li>
+			<li><%= link_to "Teszt küldése", send_mail_admin_newsletter_url(@newsletter) %></li>
 	  <% end %>
   </ul>
 </div>

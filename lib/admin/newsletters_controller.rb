@@ -65,6 +65,7 @@ class Admin::NewslettersController < ApplicationController
     
     @newsletter.author_id = current_user.id
     if @newsletter.save
+      @newsletter.last_editor!( current_user )
       redirect_to edit_admin_newsletter_url(@newsletter)
     else
       render :action => :new
@@ -96,6 +97,7 @@ class Admin::NewslettersController < ApplicationController
     newsletter_parameters.merge!( options )
 		
   	if @newsletter.update_attributes( params[:newsletter] )
+  	  @newsletter.last_editor!( current_user )
   	  flash[:notice] = _('A hírlevelet elmentettem, a változtatásaid rögzítésre kerültek.')
   	  redirect_to :back
   	else
@@ -143,12 +145,21 @@ class Admin::NewslettersController < ApplicationController
   def search
   	phrase = "%#{params[:phrase]}%"
   	@id = "browser_#{params[:type].pluralize}"
-  	@collection = params[:type].camelize.constantize.find(:all, :conditions => ["title LIKE ?", phrase] )
+  	@collection = params[:type].camelize.constantize.find(:all, :conditions => ["title LIKE ?", phrase], :limit => 50 )
   	render :layout => false
   end
   
   def preview
     render :layout => THEME["layouts"]["hirlevel"]
+  end
+  
+  def send_mail
+    if request.post?
+  	  recipients = params[:recipients].split(" ")
+  	  flash[:notice] = "Teszt levél elküldve" if NewsletterMailer.deliver_newsletter( @newsletter, recipients, "Teszt levél", "info@hg.hu" )
+  	end
+	rescue
+		render :nothing => true
   end
   
   protected
