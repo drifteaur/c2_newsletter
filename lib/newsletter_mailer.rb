@@ -7,7 +7,8 @@ class NewsletterMailer < ActionMailer::Base
 		@body["newsletter"] = newsletter
 		@body["posts"] = posts
 		
-		part :content_type => "text/html", :body => render_message("newsletter_html", :newsletter => newsletter)
+		part :content_type => "text/html", :body => render_message("newsletter_html", :newsletter => newsletter, 
+		                                                                              :posts => posts)
 		
 		#part "text/plain" do |p|
 		#	p.body = render_message("newsletter_plain", :newsletter => newsletter)

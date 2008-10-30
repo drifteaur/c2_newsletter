@@ -150,13 +150,13 @@ class Admin::NewslettersController < ApplicationController
   end
   
   def preview
-    @posts = @newsletter.posts.find(:all, :order => "element_assignments.created_at")
+    @posts = @newsletter.posts.find(:all, :order => "element_assignments.created_at DESC")
     render :layout => THEME["layouts"]["hirlevel"]
   end
   
   def send_mail
     if request.post?
-      @posts = @newsletter.posts.find(:all, :order => "element_assignments.created_at")
+      @posts = @newsletter.posts.find(:all, :order => "element_assignments.created_at DESC")
   	  recipients = params[:recipients].split(" ")
   	  flash[:notice] = "Teszt levél elküldve" if NewsletterMailer.deliver_newsletter( @newsletter, @posts, recipients, "Teszt levél", "info@hg.hu" )
   	end

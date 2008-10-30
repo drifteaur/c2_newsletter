@@ -15,12 +15,12 @@ namespace :newsletter do
 		  #end
 	  	
 	  	newsletter = Newsletter.find( ENV['ID'], :conditions => ["aasm_state = 'public'"] )
-	  	posts = newsletter.posts.find(:all, :order => "element_assignments.created_at")
+	  	posts = newsletter.posts.find(:all, :order => "element_assignments.created_at DESC")
 			users = User.find(:all, :select => "id,email", :conditions => ["newsletter = 1"] )
 			#users = User.find( :all, :conditions => ["newsletter = 1 AND id = 2"] )
 			user_count = users.size
 			# sleep time in seconds
-			waiting = 0.1
+			waiting = 0.2
 			
 			# count the successful deliveries
 			success = 0
