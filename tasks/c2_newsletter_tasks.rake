@@ -15,6 +15,7 @@ namespace :newsletter do
 		  #end
 	  	
 	  	newsletter = Newsletter.find( ENV['ID'], :conditions => ["aasm_state = 'public'"] )
+	  	posts = newsletter.posts.find(:all, :order => "element_assignments.created_at")
 			users = User.find(:all, :select => "id,email", :conditions => ["newsletter = 1"] )
 			#users = User.find( :all, :conditions => ["newsletter = 1 AND id = 2"] )
 			user_count = users.size
@@ -27,13 +28,13 @@ namespace :newsletter do
 			puts "==== Starting delivery of #{user_count} e-mails  ========"
 			users.each do |user|
 				begin
-					if NewsletterMailer.deliver_newsletter( newsletter, user.email, newsletter.title, 'hg@hg.hu' )
+					if NewsletterMailer.deliver_newsletter( newsletter, posts, user.email, newsletter.title, 'hg@hg.hu' )
 						success += 1
 						puts ""
 						puts "==== Email sent: No. #{success} of #{user_count} ======== Delivery speed: #{waiting} e-mail / sec"
 					end
 				rescue Exception => e
-					puts "==== Email delivery error:  of #{user.email} #{e.message}"
+					puts "==== Email delivery error:  of #{user.email} #{e.pretty_inspect}"
 				end
 				sleep waiting
 			end
